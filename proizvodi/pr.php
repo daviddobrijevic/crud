@@ -48,21 +48,28 @@
 
 	<?php endif ?>
 
+    <div class="container card-header">Proizvodi
+    	<th>
+    		<a href="npr.php" class="btn btn-primary btn-sm float-right">Kreiraj</a>
+    	</th>
+	</div> 
 
-	<div class="container">
+	<div class="container border pt-2">
 		<?php
 			$mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
 			$result = $mysqli->query("SELECT * FROM proizvodi");
 		?>
-
+		<div class="row pl-3 pb-1">
+		<h6>Pretraga</h6>
+	    </div>
 		<div class="card">
-		<div class="card-header">Proizvodi:</div> 
+		
 		
 			<div class="card-body">
 
-				<div class="row">
+				<div class="row pb-1 ">
 					<div class="col-sm-2">       
-			          <label>Ident</label><br>
+			          <label>Ident</label>
 			          <input class="form-control" type="text" id="" name="ident" placeholder="Ident"  value="<?php if($id){ echo $ident; } ?>">
 
 			          <?php 
@@ -74,10 +81,10 @@
 			            ?>
 			          </p>
 			          <?php endif ?>
-			        </div><!--.col-sm-3-->
+			        </div><!--.col-sm-2-->
 
 			        <div class="col-sm-2">
-			          <label>Naziv</label><br>
+			          <label>Naziv</label>
 			          <input type="text" class="form-control" id="name" name="name" placeholder="Naziv" value="<?php if($id){ echo $name; } ?>">
 			         
 			          <?php 
@@ -90,10 +97,10 @@
 			            ?>
 			          </p>
 			          <?php endif ?>
-			        </div><!--.col-sm-3-->
+			        </div><!--.col-sm-2-->
 
 			        <div class="col-sm-3">
-			          <label>Grupa proizvoda</label><br>
+			          <label>Grupa proizvoda</label>
 			          <select class="form-control" name="idgroup">
 			              <option value="">Izaberite vrednost</option>
 			            <?php 
@@ -105,9 +112,9 @@
 			        </div>
 
 			        <div class="col-sm-3">
-			          <label>Brendovi</label><br>
+			          <label>Brendovi</label>
 			          <select class="form-control" name="idbrend">
-			              <option value="">Izaberite vrednost</option>
+			              <option value="">Izaberite vrednost</oion>
 			            <?php 
 			            while ($row = $brendovi->fetch_assoc()):  //ovde izvrtis da se ispisu u combobox-u
 			            ?>
@@ -116,10 +123,11 @@
 			          </select>
 			        </div>
 
-			       	<div class="col-sm-1">
-			       		<button type="submit" class="btn btn-primary" name="pretraga">Pretraga</button><br>
-			       		<button type="submit" class="btn btn-danger" name="reset">Reset</button>
+			       	<div class="col-sm-2 pt-4">
+			       		<button type="submit" class="btn btn-info mt-2 float-left" name="pretraga">Pretraga</button>
+			       		<button type="submit" class="btn btn-danger mt-2 float-right" name="reset">Reset</button>
 			       	</div>
+			       
 
 				</div><!--.row-->
 			</div><!--.card-body-->
@@ -128,24 +136,23 @@
 
 
 
-		<div class="row justify-content-center">
-		
-			<table class="table table-hover table-responsive">
+		<div>
+			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Name</th>
+						<th>Slika</th>
 						<th>Ident</th>
-						<th>Idgroup</th>
-						<th>Idbrend</th>
-						<th>Price</th>
-						<th>Um</th>
-						<th>Vat</th>
-						<th>Note</th>
+						<th>Naziv</th>
+						<th>Grupa</th>
+						<th>Brend</th>
+						<th>JM</th>
+						<th>PDV</th>
+						<th>Cena</th>
+						<th>Napomena</th>
 						<th>Status</th>
-						<th>Image</th>
-						<th>Stock</th>
-						<th><a href="npr.php" class="btn btn-primary">Kreiraj</a></th>
+						<th>Zalihe</th>
+						<th>Akcije</th>
 					</tr>
 				</thead>
 				<?php 
@@ -153,19 +160,20 @@
 				?>		
 					<tr>
 						<td><?php echo $row['id']; ?></td>
-						<td><?php echo $row['name']; ?></td>
+						<td><img src="../db/<?php echo $row['image']; ?>" width="60" height="60" class="rotate90"></td>
 						<td><?php echo $row['ident']; ?></td>
+						<td><?php echo $row['name']; ?></td>
 						<td><?php echo $row['idgroup']; ?></td>
 						<td><?php echo $row['idbrend']; ?></td>
-						<td><?php echo $row['price']; ?></td>
 						<td><?php echo $row['um']; ?></td>
 						<td><?php echo $row['vat']; ?></td>
+						<td><?php echo $row['price']; ?></td>
 						<td><?php echo $row['note']; ?></td>
 						<td><?php if ($row['status'] == 1) { echo "Aktivan"; } else {
 							echo "Neaktivan";	
 						} ?>
 						</td>
-						<td><?php echo $row['image']; ?></td>
+						
 						<td><?php echo $row['stock']; ?></td>
 						<td>
 							<a href="npr.php?editid=<?php echo $row['id']; ?>" class="btn">
@@ -178,8 +186,8 @@
 					</tr>
 				<?php endwhile; ?>
 			</table>
-		</div>
-	</div>
+		</div><!--.table-->
+	</div><!--.container-->
 
 	
 	

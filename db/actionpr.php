@@ -8,6 +8,9 @@ $id = 0;
 $update = false;
 $name = '';
 $location = '';
+$idgroup = '';
+$idbrend = '';
+$image = '';
 
 	//ovde uzimas vrednosti za foreach u combobox-u
 
@@ -19,6 +22,7 @@ if(isset($_POST['sacuvaj'])) {
 
 	$name = $_POST['name'];
 	$ident = $_POST['ident'];
+
 	$status = "0";
 	if(isset($_POST['status'])){
 		
@@ -132,7 +136,7 @@ else{
 
 $imagepath=$upload_dir.$coverpic;
 }	
-$mysqli->query("INSERT INTO proizvodi (name, status, ident,image,idgroup,idbrend, price, um, vat, note, stock) VALUES ('$name', '$status', '$ident','$imagepath','$grupaproizvoda','$brend', '$price', '$um', '$vat', '$note', '$stock')") or die($mysqli->error);
+$mysqli->query("INSERT INTO proizvodi (name, status, ident, image, idgroup, idbrend, price, um, vat, note, stock) VALUES ('$name', '$status', '$ident','$imagepath','$grupaproizvoda','$brend', '$price', '$um', '$vat', '$note', '$stock')") or die($mysqli->error);
 
 
 $_SESSION['message'] = "Stavka uspesno sacuvana!";
@@ -184,6 +188,14 @@ if(isset($_POST['update'])) {
 	$id = $_POST['id'];
 	$name = $_POST['name'];
 	$ident = $_POST['ident'];
+	$imageputanja = $_POST['imagepath'];
+	
+	$imagepath = "";
+	if($imageputanja!=''){
+		
+		$imagepath=$imageputanja;
+	}
+
 	
 	
 	$status = "0";
@@ -248,7 +260,6 @@ if(isset($_POST['update'])) {
 	}
 
 
-
 	elseif($name != '' && $ident !=''){
 
 
@@ -259,8 +270,6 @@ if(isset($_POST['update'])) {
 		$imgSize = $_FILES['image']['size'];
 		
 
-
-		$imagepath="";
 
 		if(!empty($imgFile))
 		{
@@ -320,6 +329,7 @@ if(isset($_POST['odustani'])) {
 	$odustani = $_POST['odustani'];
 	header('location: ../proizvodi/pr.php');
 }
+
 
 
 

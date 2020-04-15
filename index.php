@@ -32,7 +32,7 @@
 		</nav>
 	</header>	
 
-    <?php require_once 'db/process.php'; ?>
+        <?php require_once 'db/process.php'; ?>
 
 	<?php 
 	if (isset($_SESSION['message'])):
@@ -56,61 +56,63 @@
 			$result = $mysqli->query("SELECT * FROM data");
 		?>
 
-	
-		<div class="row justify-content-center">
-			<table class="table">
-				<thead>
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Location</th>
+							<th colspan="2">Action</th>
+						</tr>
+					</thead>
+				<?php 
+				while ($row = $result->fetch_assoc()): 
+				?>		
 					<tr>
-						<th>Name</th>
-						<th>Location</th>
-						<th colspan="2">Action</th>
+						<td><?php echo $row['name']; ?></td>
+						<td><?php echo $row['location']; ?></td>
+						<td>
+							<a href="index.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">
+							Edit
+							</a>
+							<a href="db/process.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger">
+							Delete
+							</a>
+						</td>
 					</tr>
-				</thead>
-		<?php 
-		while ($row = $result->fetch_assoc()): 
-		?>		
-				<tr>
-					<td><?php echo $row['name']; ?></td>
-					<td><?php echo $row['location']; ?></td>
-					<td>
-						<a href="index.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">
-						Edit
-						</a>
-						<a href="db/process.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger">
-						Delete
-						</a>
-					</td>
-				</tr>
-		<?php endwhile; ?>
+				<?php endwhile; ?>
 
-			</table>
-		</div>
+				</table>
+		
 
-		<div class="row justify-content-center">
-			<form action="db/process.php" method="POST">
-				<input type="hidden" name="id" value="<?php echo $id; ?>">
-				<div class="form-group">			
-					<label>Name</label>
-					<input type="text" name="name" class="form-control" 
-					value="<?php echo $name; ?>" placeholder="Enter your name">
+				<div class="row justify-content-center">
+					<form action="db/process.php" method="POST">
+						<input type="hidden" name="id" value="<?php echo $id; ?>">
+						<div class="form-group">			
+							<label>Name</label>
+							<input type="text" name="name" class="form-control" 
+							value="<?php echo $name; ?>" placeholder="Enter your name">
+						</div>
+						<div class="form-group">
+							<label>Location</label>
+							<input type="text" name="location" class="form-control" 
+							value="<?php echo $location; ?>" placeholder="Enter your location">
+						</div>
+						<div class="form-group">
+					<?php
+						if ($update == true):
+					?>
+							<button type="submit" class="btn btn-info" name="update">Update</button>
+					<?php else: ?>
+							<button type="submit" class="btn btn-primary" name="save">Save</button>
+					<?php endif; ?>
+						</div>
+					</form>
 				</div>
-				<div class="form-group">
-					<label>Location</label>
-					<input type="text" name="location" class="form-control" 
-					value="<?php echo $location; ?>" placeholder="Enter your location">
-				</div>
-				<div class="form-group">
-				<?php
-				if ($update == true):
-				?>
-					<button type="submit" class="btn btn-info" name="update">Update</button>
-				<?php else: ?>
-					<button type="submit" class="btn btn-primary" name="save">Save</button>
-				<?php endif; ?>
-				</div>
-			</form>
-		</div>
-	</div>
+			</div><!--.card-body-->
+		</div><!--.card-->
+	</div><!--.container-->
 
 	
 	

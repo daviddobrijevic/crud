@@ -9,3 +9,7 @@
 .fas {
 	color: #D63C3C;
 }
+
+div .table {
+	border-style: hidden;
+}

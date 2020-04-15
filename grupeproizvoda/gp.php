@@ -55,41 +55,46 @@
 			$mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
 			$result = $mysqli->query("SELECT * FROM grupeproizvoda");
 		?>
-		<h5 class="pt-2 naslov">Grupe proizvoda:</h5>
-		<div class="row justify-content-center">
-		
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Naziv</th>
-						<th>Status</th>
-						<th><a href="ngp.php" class="btn btn-primary">Kreiraj</a></th>
-					</tr>
-				</thead>
-				<?php 
-				while ($row = $result->fetch_assoc()): 
-				?>		
-					<tr>
-						<td><?php echo $row['id']; ?></td>
-						<td><?php echo $row['naziv']; ?></td>
-						<td><?php if ($row['status'] == 1) { echo "Aktivan"; } else {
-							echo "Neaktivan";	
-						} ?>
-						</td>
-						<td>
-							<a href="ngp.php?editid=<?php echo $row['id']; ?>" class="btn">
-							<i class="far fa-edit"></i>
-							</a>
-							<a href="../db/actiongp.php?deleteid=<?php echo $row['id']; ?>" class="btn">
-							<i class="far fa-trash-alt"></i>
-							</a>
-						</td>
-					</tr>
-				<?php endwhile; ?>
-			</table>
-		</div>
-	</div>
+		<div class="card">
+			<div class="card-header">Grupe proizvoda
+		    	<th>
+		    		<a href="ngp.php" class="btn btn-primary btn-sm float-right">Kreiraj</a>
+		    	</th>
+			</div><!--.card-header-->
+			<div class="card-body">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Naziv</th>
+							<th>Status</th>
+							<th>Akcije</th>
+						</tr>
+					</thead>
+					<?php 
+					while ($row = $result->fetch_assoc()): 
+					?>		
+						<tr>
+							<td><?php echo $row['id']; ?></td>
+							<td><?php echo $row['naziv']; ?></td>
+							<td><?php if ($row['status'] == 1) { echo "Aktivan"; } else {
+								echo "Neaktivan";	
+							} ?>
+							</td>
+							<td>
+								<a href="ngp.php?editid=<?php echo $row['id']; ?>" class="btn">
+								<i class="far fa-edit"></i>
+								</a>
+								<a href="../db/actiongp.php?deleteid=<?php echo $row['id']; ?>" class="btn">
+								<i class="far fa-trash-alt"></i>
+								</a>
+							</td>
+						</tr>
+					<?php endwhile; ?>
+				</table>
+			</div><!--.card-body-->
+		</div><!--.card-->
+	</div><!--.container-->
 
 	
 	

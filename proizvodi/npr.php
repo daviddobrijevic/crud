@@ -128,25 +128,32 @@
     </div><!--.row-->
 
     <div class="row">
-        <input type="hidden" name="size" value="">
+
+        <input type="hidden" name="imagepath" value="<?php if($image){ echo $image; }?>">
+        <?php if($image): ?>
         <div class="col-sm-3 pt-5">
-          <img src="../db/<?php echo $image; ?>" alt="" width="200px" height="200px" class="rotate90">
+        <img src="../db/<?php echo $image; ?>" alt="" width="200px" height="200px" class="rotate90">
           <button class="btn btn-default" class="close">
             <i class="fas fa-times-circle fa-sm"></i>
           </button>
         </div>
-        <div class="col-sm-9 pt-3"> 
+        <?php else: ?>
+        <div class="col-sm-3 pt-5 pl-4">
+        <img src="../db/slikeproizvoda/noimg.png" alt="" width="200px" height="200px">
+        </div>
+        <?php endif ?>
+        <div class="col-sm-9 pt-2"> 
           <label>Napomena</label><br>
           <textarea class="form-control" type="text" id="" name="note" placeholder="Napomena" rows="8"><?php if($id){ echo $note; } ?></textarea>
         </div>
     </div><!--.row-->
 
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-3 pt-2">
         <input class="mt-2" type="file" name="image">
         </div>
         <div class="col-sm-3">
-          <div class="form-check pt-2">
+          <div class="form-check pt-3">
                 <input class="form-check-input" type="checkbox" id="status" name="status" value="1" <?php if($id && $status==1){ echo 'checked';  }   ?>>
                 <label class="form-check-label" for="status">Status</label>
           </div>
