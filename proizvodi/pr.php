@@ -60,7 +60,7 @@
 			$result = $mysqli->query("SELECT * FROM proizvodi");
 		?>
 		<div class="row pl-3 pb-1">
-		<h6>Pretraga</h6>
+		<h6 class="pl-1">Pretraga</h6>
 	    </div>
 		<div class="card">
 		
@@ -160,7 +160,13 @@
 				?>		
 					<tr>
 						<td><?php echo $row['id']; ?></td>
-						<td><img src="../db/<?php echo $row['image']; ?>" width="60" height="60" class="rotate90"></td>
+						<td>
+							<?php if($image == $row['image']): ?>
+							<img src="../db/slikeproizvoda/noimg.jpg ?>" width="60" height="60">
+							<?php else: ?>
+							<img src="../db/<?php echo $row['image']; ?>" width="60" height="60" class="rotate90">
+							<?php endif ?>
+						</td>
 						<td><?php echo $row['ident']; ?></td>
 						<td><?php echo $row['name']; ?></td>
 						<td><?php echo $row['idgroup']; ?></td>
