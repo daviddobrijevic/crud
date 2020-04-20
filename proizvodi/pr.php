@@ -2,9 +2,10 @@
 <html>
 <head>
 	<title>PHP CRUD</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../css/proizvodi.css">
 	<link rel="stylesheet" type="text/css" href="../css/all.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 </head>
 <body>
 	<header>
@@ -57,7 +58,7 @@
 	<div class="container border pt-2">
 		<?php
 			$mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
-			$result = $mysqli->query("SELECT * FROM proizvodi");
+			$result = $mysqli->query("SELECT p.*,b.naziv as nazivbrenda,gp.naziv as nazivgrupe from proizvodi p left join grupeproizvoda gp on p.idgroup=gp.id left join brendovi b on p.idbrend=b.id");
 		?>
 		<div class="row pl-3 pb-1">
 		<h6 class="pl-1">Pretraga</h6>
@@ -169,8 +170,8 @@
 						</td>
 						<td><?php echo $row['ident']; ?></td>
 						<td><?php echo $row['name']; ?></td>
-						<td><?php echo $row['idgroup']; ?></td>
-						<td><?php echo $row['idbrend']; ?></td>
+						<td><?php echo $row['nazivgrupe']; ?></td>
+						<td><?php echo $row['nazivbrenda']; ?></td>
 						<td><?php echo $row['um']; ?></td>
 						<td><?php echo $row['vat']; ?></td>
 						<td><?php echo $row['price']; ?></td>

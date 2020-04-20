@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="../css/proizvodi.css">
   <link rel="stylesheet" type="text/css" href="../css/style.css">
   <link rel="stylesheet" type="text/css" href="../css/all.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 </head>
 <body>
   <header>
@@ -111,15 +111,15 @@
     <div class="row pt-2">
         <div class="col-sm-3">
           <label>JM</label><br>
-          <input class="form-control" type="text" id="" name="um" placeholder="JM" value="<?php if($id){ echo $um; } ?>">
+          <input class="form-control" type="text" id="um" name="um" placeholder="JM" value="<?php if($id){ echo $um; } ?>">
         </div>
         <div class="col-sm-3">
           <label>PDV</label><br>
-          <input class="form-control" type="text" id="" name="vat" placeholder="PDV" value="<?php if($id){ echo $vat; } ?>">
+          <input class="form-control" type="text" id="vat" name="vat" placeholder="PDV" value="<?php if($id){ echo $vat; } ?>">
         </div>
         <div class="col-sm-3">
           <label>Cena</label><br>
-          <input class="form-control" type="text" id="" name="price" placeholder="Cena" value="<?php if($id){ echo $price; } ?>">
+          <input class="form-control" type="text" id="price" name="price" placeholder="Cena" value="<?php if($id){ echo $price; } ?>">
         </div>
         <div class="col-sm-3">
           <label>Zalihe</label><br>
@@ -180,6 +180,5 @@
 </form> 
 
 
-
-
+<script src="script.js"></script>
 <?php include '../templates/footer.php'; ?>
