@@ -12,6 +12,7 @@ $idgroup = '';
 $idbrend = '';
 $image = '';
 
+
 	//ovde uzimas vrednosti za foreach u combobox-u
 
 $grupeproizvoda = $mysqli->query("SELECT * FROM grupeproizvoda");
@@ -332,6 +333,37 @@ if(isset($_POST['odustani'])) {
 
 
 
+$whereproizvodi = "where 1=1";
+if(isset($_POST['pretraga'])) {
+	if(isset($_POST['ident'])) {
+		$ident = $_POST['ident'];
+
+		$whereproizvodi = " and ident LIKE %".$ident."%";
+	}
+
+	if(isset($_POST['name'])) {
+		$name = $_POST['p.name'];
+
+		$whereproizvodi = " and name LIKE %".$name."%";
+	}
+
+	if(isset($_POST['idgroup'])) {
+		$idgroup = $_POST['idgroup'];
+
+		$whereproizvodi = " and idgroup = ".$idgroup."";
+	}
+
+	if(isset($_POST['idbrend'])) {
+		$idbrend = $_POST['idbrend'];
+
+		$whereproizvodi = " and idbrend = ".$idbrend."";
+	}
+	
+}
+
+
 
 
 ?>
+
+
