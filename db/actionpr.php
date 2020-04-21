@@ -333,7 +333,7 @@ if(isset($_POST['odustani'])) {
 
 
 
-$whereproizvodi = "where 1=1";
+$whereproizvodi = "";
 if(isset($_POST['pretraga'])) {
 	if(isset($_POST['ident'])) {
 		$ident = $_POST['ident'];
@@ -342,7 +342,7 @@ if(isset($_POST['pretraga'])) {
 	}
 
 	if(isset($_POST['name'])) {
-		$name = $_POST['p.name'];
+		$name = $_POST['name'];
 
 		$whereproizvodi = " and name LIKE %".$name."%";
 	}
