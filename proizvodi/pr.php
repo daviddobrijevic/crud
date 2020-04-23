@@ -34,7 +34,7 @@
 		</nav>
 	</header>
 
-	<?php require_once '../db/actionpr.php'; ?>
+	<?php include '../db/actionpr.php'; ?>
 
 	<?php 
 	if (isset($_SESSION['message'])):
@@ -58,7 +58,11 @@
 	<div class="container border pt-2">
 		<?php
 			$mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
-			$result = $mysqli->query("SELECT p.*,b.naziv as nazivbrenda,gp.naziv as nazivgrupe from proizvodi p left join grupeproizvoda gp on p.idgroup=gp.id left join brendovi b on p.idbrend=b.id".$whereproizvodi);
+			$result = $mysqli->query("
+				SELECT p.*,b.naziv as nazivbrenda,gp.naziv as nazivgrupe
+				from proizvodi p 
+				left join grupeproizvoda gp on p.idgroup = gp.id 
+				left join brendovi b on p.idbrend = b.id".$whereproizvodi);
 		?>
 		<div class="row pl-3 pb-1">
 		<h6 class="pl-1">Pretraga</h6>
@@ -125,13 +129,14 @@
 			        </div>
 
 			       	<form class="col-sm-2 pt-4" action="../db/actionpr.php" method="POST">
-			       		<button type="submit" class="btn btn-info mt-2 float-left" name="pretraga">Pretraga</button>
+			       		<button type="submit" class="btn btn-info mt-2 float-left" name="pretraga" value="Search">Pretraga</button>
 			       		<button type="submit" class="btn btn-danger mt-2 float-right" name="reset">Reset</button>
 			       	</form>
 			       
 
 				</div><!--.row-->
 			</div><!--.card-body-->
+
 		</div><!--.card-->
 		<br>
 
@@ -165,7 +170,7 @@
 							<?php if($image == $row['image']): ?>
 							<img src="../db/slikeproizvoda/noimg.jpg ?>" width="60" height="60">
 							<?php else: ?>
-							<img src="../db/<?php echo $row['image']; ?>" width="60" height="60" class="">
+							<img src="../db/<?php echo $row['image']; ?>" width="60" height="60" class="rotate90">
 							<?php endif ?>
 						</td>
 						<td><?php echo $row['ident']; ?></td>
@@ -197,6 +202,20 @@
 	</div><!--.container-->
 
 
+<ul class="pagination container pt-2">
+	<?php if($page > 1) { ?>
+		<li class="page-item"><a class="page-link" href="?page=<?php echo ($page - 1); ?>">&laquo;</a></li>
+	<?php } ?>
 
+	<?php for($i = 1; $i <= $total_pages; $i++) { ?>
+		<li class="page-item"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+	<?php } ?>
+
+	<?php if($page != $total_pages) { ?>
+		<li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 1); ?>">&raquo;</a></li>
+	<?php } ?>
+</ul>
+	
+	
 
 <?php include '../templates/footer.php'; ?>

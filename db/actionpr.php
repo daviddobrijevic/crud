@@ -338,32 +338,64 @@ if(isset($_POST['pretraga'])) {
 	if(isset($_POST['ident'])) {
 		$ident = $_POST['ident'];
 
-		$whereproizvodi = " and ident LIKE %".$ident."%";
+		$whereproizvodi = " and p.ident LIKE %".$ident."%";
 	}
 
 	if(isset($_POST['name'])) {
 		$name = $_POST['name'];
 
-		$whereproizvodi = " and name LIKE %".$name."%";
+		$whereproizvodi = " and p.name LIKE %".$name."%";
 	}
 
 	if(isset($_POST['idgroup'])) {
 		$idgroup = $_POST['idgroup'];
 
-		$whereproizvodi = " and idgroup = ".$idgroup."";
+		$whereproizvodi = " and p.idgroup = ".$idgroup."";
 	}
 
 	if(isset($_POST['idbrend'])) {
 		$idbrend = $_POST['idbrend'];
 
-		$whereproizvodi = " and idbrend = ".$idbrend."";
+		$whereproizvodi = " and p.idbrend = ".$idbrend."";
 	}
+
+	# header("location: ../proizvodi/pr.php"); 
 	
 }
 
+	if(isset($_POST['reset'])) {
+		$whereproizvodi = "where 1=1";
+
+	header("location: ../proizvodi/pr.php");
+}	
 
 
 
+	$t = mysqli_query($mysqli, "SELECT * FROM proizvodi");
+	$total = mysqli_num_rows($t);
+	$start = 0; 
+	$limit = 03; // broj redova po stranici
+
+	if(isset($_GET['page'])) {
+
+		$page = $_GET['page'];
+		$start = ($page - 1) * $limit;
+
+	} else {
+
+		$page = 1;
+
+	}
+
+	$total_pages = ceil($total / $limit);
+
+	$result = $mysqli->query("SELECT * FROM proizvodi LIMIT $start, $limit");
+
+
+
+
+
+    
 ?>
 
 
