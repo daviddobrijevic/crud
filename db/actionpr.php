@@ -11,6 +11,7 @@ $location = '';
 $idgroup = '';
 $idbrend = '';
 $image = '';
+$limitstart='';
 
 
 	//ovde uzimas vrednosti za foreach u combobox-u
@@ -335,46 +336,50 @@ if(isset($_POST['odustani'])) {
 
 $whereproizvodi = "";
 if(isset($_POST['pretraga'])) {
-	if(isset($_POST['ident'])) {
+	if(!empty($_POST['ident'])) {
 		$ident = $_POST['ident'];
 
-		$whereproizvodi = " and p.ident LIKE %".$ident."%";
+		$whereproizvodi .=" and p.ident LIKE '%".$ident."%'";
+
 	}
 
-	if(isset($_POST['name'])) {
+	if(!empty($_POST['name'])) {
 		$name = $_POST['name'];
 
-		$whereproizvodi = " and p.name LIKE %".$name."%";
+		$whereproizvodi .=" and p.name LIKE '%".$name."%'";
 	}
 
-	if(isset($_POST['idgroup'])) {
+	if(!empty($_POST['idgroup'])) {
 		$idgroup = $_POST['idgroup'];
 
-		$whereproizvodi = " and p.idgroup = ".$idgroup."";
+		$whereproizvodi .=" and p.idgroup = ".$idgroup."";
 	}
 
-	if(isset($_POST['idbrend'])) {
+	if(!empty($_POST['idbrend'])) {
 		$idbrend = $_POST['idbrend'];
 
-		$whereproizvodi = " and p.idbrend = ".$idbrend."";
+		$whereproizvodi .=" and p.idbrend = ".$idbrend."";
 	}
 
-	# header("location: ../proizvodi/pr.php"); 
+
+
 	
 }
 
 	if(isset($_POST['reset'])) {
-		$whereproizvodi = "where 1=1";
+		$whereproizvodi = "";
 
-	header("location: ../proizvodi/pr.php");
+	
 }	
 
+$select="SELECT p.*,b.naziv as nazivbrenda,gp.naziv as nazivgrupe from proizvodi p 
+				left join grupeproizvoda gp on p.idgroup = gp.id 
+				left join brendovi b on p.idbrend = b.id where 1=1".$whereproizvodi;
 
-
-	$t = mysqli_query($mysqli, "SELECT * FROM proizvodi");
+	$t = mysqli_query($mysqli, $select);
 	$total = mysqli_num_rows($t);
 	$start = 0; 
-	$limit = 03; // broj redova po stranici
+	$limit = 5; // broj redova po stranici
 
 	if(isset($_GET['page'])) {
 
@@ -389,9 +394,11 @@ if(isset($_POST['pretraga'])) {
 
 	$total_pages = ceil($total / $limit);
 
-	$result = $mysqli->query("SELECT * FROM proizvodi LIMIT $start, $limit");
+
+$limitstart=" LIMIT $start, $limit";
 
 
+$select.=$limitstart;
 
 
 
