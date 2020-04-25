@@ -60,8 +60,7 @@
 			$mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
 			
 		
-		
-			$result = $mysqli->query($select);
+			$result = $mysqli->query($select); //select sam stavila u actionpr jer treba da mu nadodam uslove za paginaciju
 				//print_r($result );
 		?>
 		<div class="row pl-3 pb-1">
