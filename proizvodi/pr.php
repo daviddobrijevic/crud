@@ -58,18 +58,18 @@
 	<div class="container border pt-2">
 		<?php
 			$mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
-			$result = $mysqli->query("
-				SELECT p.*,b.naziv as nazivbrenda,gp.naziv as nazivgrupe
-				from proizvodi p 
-				left join grupeproizvoda gp on p.idgroup = gp.id 
-				left join brendovi b on p.idbrend = b.id".$whereproizvodi);
+			
+		
+		
+			$result = $mysqli->query($select);
+				//print_r($result );
 		?>
 		<div class="row pl-3 pb-1">
 		<h6 class="pl-1">Pretraga</h6>
 	    </div>
 		<div class="card">
 		
-		
+			<form  action="" method="POST">
 			<div class="card-body">
 
 				<div class="row pb-1 ">
@@ -128,9 +128,10 @@
 			          </select>
 			        </div>
 
-			       	<form class="col-sm-2 pt-4" action="../db/actionpr.php" method="POST">
-			       		<button type="submit" class="btn btn-info mt-2 float-left" name="pretraga" value="Search">Pretraga</button>
+			       <div class="col-sm-2 pt-4">
+			       		<button type="submit" class="btn btn-info mt-2 float-left " name="pretraga" value="Search">Pretraga</button>
 			       		<button type="submit" class="btn btn-danger mt-2 float-right" name="reset">Reset</button>
+						</div>
 			       	</form>
 			       
 
@@ -201,7 +202,6 @@
 		</div><!--.table-->
 	</div><!--.container-->
 
-
 <ul class="pagination container pt-2">
 	<?php if($page > 1) { ?>
 		<li class="page-item"><a class="page-link" href="?page=<?php echo ($page - 1); ?>">&laquo;</a></li>
@@ -215,6 +215,7 @@
 		<li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 1); ?>">&raquo;</a></li>
 	<?php } ?>
 </ul>
+
 	
 	
 
