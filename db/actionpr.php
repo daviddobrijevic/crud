@@ -13,6 +13,8 @@ $idbrend = '';
 $image = '';
 $limitstart = '';	
 
+
+
 	//ovde uzimas vrednosti za foreach u combobox-u
 
 $grupeproizvoda = $mysqli->query("SELECT * FROM grupeproizvoda");
@@ -338,28 +340,49 @@ if(isset($_POST['pretraga'])) {
 	if(!empty($_POST['ident'])) {
 		$ident = $_POST['ident'];
 
+
 		$whereproizvodi .= " and p.ident LIKE '%".$ident."%'";
+
+		$whereproizvodi .=" and p.ident LIKE '%".$ident."%'";
+
+
 	}
 
 	if(!empty($_POST['name'])) {
 		$name = $_POST['name'];
 
+
 		$whereproizvodi .= " and p.name LIKE '%".$name."%'";
+
+		$whereproizvodi .=" and p.name LIKE '%".$name."%'";
+
 	}
 
 	if(!empty($_POST['idgroup'])) {
 		$idgroup = $_POST['idgroup'];
 
+
 		$whereproizvodi .= " and p.idgroup = ".$idgroup."";
+
+		$whereproizvodi .=" and p.idgroup = ".$idgroup."";
+
 	}
 
 	if(!empty($_POST['idbrend'])) {
 		$idbrend = $_POST['idbrend'];
 
+
 		$whereproizvodi .= " and p.idbrend = ".$idbrend."";
 	}
 
 	
+
+		$whereproizvodi .=" and p.idbrend = ".$idbrend."";
+	}
+
+
+
+
 	
 }
 
@@ -369,15 +392,22 @@ if(isset($_POST['pretraga'])) {
 	
 }	
 
+
 	$select = "SELECT p.*,b.naziv as nazivbrenda,gp.naziv as nazivgrupe
 			   from proizvodi p 
 			   left join grupeproizvoda gp on p.idgroup = gp.id 
 			   left join brendovi b on p.idbrend = b.id where 1=1".$whereproizvodi;
 
+
+
 	$t = mysqli_query($mysqli, $select);
 	$total = mysqli_num_rows($t);
 	$start = 0; 
+
 	$limit = 20; // broj redova po stranici
+
+	$limit = 5; // broj redova po stranici
+
 
 	if(isset($_GET['page'])) {
 
@@ -392,11 +422,17 @@ if(isset($_POST['pretraga'])) {
 
 	$total_pages = ceil($total / $limit);
 
+
 	$limitstart = " LIMIT $start, $limit";
 
 	$select .= $limitstart;
 
 
+$limitstart=" LIMIT $start, $limit";
+
+
+
+$select.=$limitstart;
 
 
 

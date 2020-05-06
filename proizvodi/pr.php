@@ -58,14 +58,15 @@
 	<div class="container border pt-2">
 		<?php
 			$mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
-			$result = $mysqli->query($select);
-			
+
+			$result = $mysqli->query($select); //select sam stavila u actionpr jer treba da mu nadodam uslove za paginaciju
+				//print_r($result );
+
 		?>
 		<div class="row pl-3 pb-1">
 		<h6 class="pl-1">Pretraga</h6>
 	    </div>
 		<div class="card">
-		
 		
 			<form action="" method="POST">	
 
@@ -137,6 +138,76 @@
 				</div><!--.card-body-->
 			</form>
 
+			<form  action="" method="POST">
+			<div class="card-body">
+
+				<div class="row pb-1 ">
+					<div class="col-sm-2">       
+			          <label>Ident</label>
+			          <input class="form-control" type="text" id="" name="ident" placeholder="Ident"  value="<?php if($id){ echo $ident; } ?>">
+
+			          <?php 
+			          if(isset($_SESSION['messageident'])): 
+			          ?>
+			          <p class="redcolor">*
+			            <?php echo $_SESSION['messageident'];
+			                  unset($_SESSION['messageident']);
+			            ?>
+			          </p>
+			          <?php endif ?>
+			        </div><!--.col-sm-2-->
+
+			        <div class="col-sm-2">
+			          <label>Naziv</label>
+			          <input type="text" class="form-control" id="name" name="name" placeholder="Naziv" value="<?php if($id){ echo $name; } ?>">
+			         
+			          <?php 
+			          if(isset($_SESSION['message'])): 
+			          ?>
+			          
+			          <p class="redcolor">*
+			            <?php echo $_SESSION['message'];
+			                  unset($_SESSION['message']);
+			            ?>
+			          </p>
+			          <?php endif ?>
+			        </div><!--.col-sm-2-->
+
+			        <div class="col-sm-3">
+			          <label>Grupa proizvoda</label>
+			          <select class="form-control" name="idgroup">
+			              <option value="">Izaberite vrednost</option>
+			            <?php 
+			            while ($row = $grupeproizvoda->fetch_assoc()):  //ovde izvrtis da se ispisu u combobox-u
+			            ?>
+			              <option value="<?php echo $row['id']; ?>"<?php if ($row['id'] == $idgroup) echo 'selected="selected"'; ?>><?php echo $row['naziv'] ?></option>
+			            <?php endwhile; ?>
+			          </select>
+			        </div>
+
+			        <div class="col-sm-3">
+			          <label>Brendovi</label>
+			          <select class="form-control" name="idbrend">
+			              <option value="">Izaberite vrednost</oion>
+			            <?php 
+			            while ($row = $brendovi->fetch_assoc()):  //ovde izvrtis da se ispisu u combobox-u
+			            ?>
+			              <option value="<?php echo $row['id']; ?>"<?php if($row['id'] == $idbrend) echo 'selected="selected"'; ?>><?php echo $row['naziv']; ?></option>
+			            <?php endwhile; ?>
+			          </select>
+			        </div>
+
+			       <div class="col-sm-2 pt-4">
+			       		<button type="submit" class="btn btn-info mt-2 float-left " name="pretraga" value="Search">Pretraga</button>
+			       		<button type="submit" class="btn btn-danger mt-2 float-right" name="reset">Reset</button>
+						</div>
+			       	</form>
+			       
+
+				</div><!--.row-->
+			</div><!--.card-body-->
+
+
 		</div><!--.card-->
 		<br>
 
@@ -201,7 +272,6 @@
 		</div><!--.table-->
 	</div><!--.container-->
 
-
 <ul class="pagination container pt-2">
 	<?php if($page > 1) { ?>
 		<li class="page-item"><a class="page-link" href="?page=<?php echo ($page - 1); ?>">&laquo;</a></li>
@@ -215,6 +285,7 @@
 		<li class="page-item"><a class="page-link" href="?page=<?php echo ($page + 1); ?>">&raquo;</a></li>
 	<?php } ?>
 </ul>
+
 	
 	
 
