@@ -137,81 +137,8 @@
 				    </div><!--.row-->
 				</div><!--.card-body-->
 			</form>
-
-			<form  action="" method="POST">
-			<div class="card-body">
-
-				<div class="row pb-1 ">
-					<div class="col-sm-2">       
-			          <label>Ident</label>
-			          <input class="form-control" type="text" id="" name="ident" placeholder="Ident"  value="<?php if($id){ echo $ident; } ?>">
-
-			          <?php 
-			          if(isset($_SESSION['messageident'])): 
-			          ?>
-			          <p class="redcolor">*
-			            <?php echo $_SESSION['messageident'];
-			                  unset($_SESSION['messageident']);
-			            ?>
-			          </p>
-			          <?php endif ?>
-			        </div><!--.col-sm-2-->
-
-			        <div class="col-sm-2">
-			          <label>Naziv</label>
-			          <input type="text" class="form-control" id="name" name="name" placeholder="Naziv" value="<?php if($id){ echo $name; } ?>">
-			         
-			          <?php 
-			          if(isset($_SESSION['message'])): 
-			          ?>
-			          
-			          <p class="redcolor">*
-			            <?php echo $_SESSION['message'];
-			                  unset($_SESSION['message']);
-			            ?>
-			          </p>
-			          <?php endif ?>
-			        </div><!--.col-sm-2-->
-
-			        <div class="col-sm-3">
-			          <label>Grupa proizvoda</label>
-			          <select class="form-control" name="idgroup">
-			              <option value="">Izaberite vrednost</option>
-			            <?php 
-			            while ($row = $grupeproizvoda->fetch_assoc()):  //ovde izvrtis da se ispisu u combobox-u
-			            ?>
-			              <option value="<?php echo $row['id']; ?>"<?php if ($row['id'] == $idgroup) echo 'selected="selected"'; ?>><?php echo $row['naziv'] ?></option>
-			            <?php endwhile; ?>
-			          </select>
-			        </div>
-
-			        <div class="col-sm-3">
-			          <label>Brendovi</label>
-			          <select class="form-control" name="idbrend">
-			              <option value="">Izaberite vrednost</oion>
-			            <?php 
-			            while ($row = $brendovi->fetch_assoc()):  //ovde izvrtis da se ispisu u combobox-u
-			            ?>
-			              <option value="<?php echo $row['id']; ?>"<?php if($row['id'] == $idbrend) echo 'selected="selected"'; ?>><?php echo $row['naziv']; ?></option>
-			            <?php endwhile; ?>
-			          </select>
-			        </div>
-
-			       <div class="col-sm-2 pt-4">
-			       		<button type="submit" class="btn btn-info mt-2 float-left " name="pretraga" value="Search">Pretraga</button>
-			       		<button type="submit" class="btn btn-danger mt-2 float-right" name="reset">Reset</button>
-						</div>
-			       	</form>
-			       
-
-				</div><!--.row-->
-			</div><!--.card-body-->
-
-
 		</div><!--.card-->
 		<br>
-
-
 
 		<div>
 			<table class="table table-bordered table-striped">

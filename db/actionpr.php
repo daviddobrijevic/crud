@@ -339,58 +339,38 @@ $whereproizvodi = "";
 if(isset($_POST['pretraga'])) {
 	if(!empty($_POST['ident'])) {
 		$ident = $_POST['ident'];
-
-
+		
 		$whereproizvodi .= " and p.ident LIKE '%".$ident."%'";
-
-		$whereproizvodi .=" and p.ident LIKE '%".$ident."%'";
-
-
 	}
 
 	if(!empty($_POST['name'])) {
 		$name = $_POST['name'];
-
-
+		
 		$whereproizvodi .= " and p.name LIKE '%".$name."%'";
-
-		$whereproizvodi .=" and p.name LIKE '%".$name."%'";
 
 	}
 
 	if(!empty($_POST['idgroup'])) {
 		$idgroup = $_POST['idgroup'];
 
-
 		$whereproizvodi .= " and p.idgroup = ".$idgroup."";
-
-		$whereproizvodi .=" and p.idgroup = ".$idgroup."";
 
 	}
 
 	if(!empty($_POST['idbrend'])) {
 		$idbrend = $_POST['idbrend'];
 
-
 		$whereproizvodi .= " and p.idbrend = ".$idbrend."";
+
 	}
 
-	
-
-		$whereproizvodi .=" and p.idbrend = ".$idbrend."";
-	}
-
-
-
-
-	
 }
 
-	if(isset($_POST['reset'])) {
-		$whereproizvodi = "";
 
-	
-}	
+	if(isset($_POST['reset'])) {
+
+		$whereproizvodi = "";
+	}	
 
 
 	$select = "SELECT p.*,b.naziv as nazivbrenda,gp.naziv as nazivgrupe
@@ -426,13 +406,6 @@ if(isset($_POST['pretraga'])) {
 	$limitstart = " LIMIT $start, $limit";
 
 	$select .= $limitstart;
-
-
-$limitstart=" LIMIT $start, $limit";
-
-
-
-$select.=$limitstart;
 
 
 
