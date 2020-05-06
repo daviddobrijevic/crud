@@ -20,8 +20,8 @@
 				          Sifarnici
 				        </a>
 				        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-				          <a class="dropdown-item" href="grupeproizvoda/gp.php">Grupe proizvoda</a>
-				          <a class="dropdown-item" href="brendovi/br.php">Brendovi</a>
+				          <a class="dropdown-item" href="../grupeproizvoda/gp.php">Grupe proizvoda</a>
+				          <a class="dropdown-item" href="../brendovi/br.php">Brendovi</a>
 				        </div>
 				      </li>
 				       <li class="nav-item">

@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/brendovi.css">
 	<link rel="stylesheet" type="text/css" href="../css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
 </head>
 <body>
 	<header>
@@ -59,12 +60,13 @@
 		 <div class="card-header">Brendovi
 	    	<th>
 	    		<a href="nbr.php" class="btn btn-primary btn-sm float-right">Kreiraj</a>
+	    		<input class="form-control-sm mr-1 col-sm-3 float-right" id="search" type="text" placeholder="Pretraga.." aria-label="Search">	
 	    	</th>
 		</div> 
 		    
 		    <div class="card-body">
 			
-				<table class="table table-bordered table-striped">
+				<table class="table table-bordered table-striped" id="table">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -100,5 +102,5 @@
 	</div><!--.container-->
 
 	
-	
+<script src="../js/search.js"></script>	
 <?php include '../templates/footer.php'; ?>
