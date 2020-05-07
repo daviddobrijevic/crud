@@ -24,29 +24,27 @@ if(isset($_POST['register'])) {
 	$user_group = $_POST['user_group'];
 	$activeuser = $_POST['activeuser'];
 
-	if(empty($name)) {
+	if($name == '') {
 
 		$_SESSION['messageName'] = "Morate popuniti ovo polje";
 		header('location: ../register.php');
 
-	} if(empty($surname)) {
+	} if($surname == '') {
 
 		$_SESSION['messageSurname'] = "Morate popuniti ovo polje";
 		header('location: ../register.php');
 
-	} if(empty($email)) {
+	} if($email == '') {
 
 		$_SESSION['messageEmail'] = "Morate popuniti ovo polje";
 		header('location: ../register.php');
 
-	} if(empty($pass)) {
+	} if($pass == '') {
 
 		$_SESSION['messagePassword'] = "Morate popuniti ovo polje";
 		header('location: ../register.php');
 
-	}
-
-	if(empty($pass)) {
+	} if($pass == '') {
 
 		$_SESSION['messagePassword2'] = "Morate popuniti ovo polje";
 		header('location: ../register.php');
