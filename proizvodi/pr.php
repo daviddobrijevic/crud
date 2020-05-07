@@ -215,5 +215,5 @@
 
 	
 	
-
+<script src="script.js"></script>
 <?php include '../templates/footer.php'; ?>

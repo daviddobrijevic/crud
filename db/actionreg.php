@@ -23,9 +23,44 @@ if(isset($_POST['register'])) {
 	$password = MD5($pass);
 	$user_group = $_POST['user_group'];
 	$activeuser = $_POST['activeuser'];
-		
+
+	if(empty($name)) {
+
+		$_SESSION['messageName'] = "Morate popuniti ovo polje";
+		header('location: ../register.php');
+
+	} if(empty($surname)) {
+
+		$_SESSION['messageSurname'] = "Morate popuniti ovo polje";
+		header('location: ../register.php');
+
+	} if(empty($email)) {
+
+		$_SESSION['messageEmail'] = "Morate popuniti ovo polje";
+		header('location: ../register.php');
+
+	} if(empty($pass)) {
+
+		$_SESSION['messagePassword'] = "Morate popuniti ovo polje";
+		header('location: ../register.php');
+
+	}
+
+	if(empty($pass)) {
+
+		$_SESSION['messagePassword2'] = "Morate popuniti ovo polje";
+		header('location: ../register.php');
+
+	} else {
+
 	$mysqli->query("INSERT INTO users (name, surname, address, city, phone, gender, email, password, user_group, activeuser) 
 					VALUES ('$name', '$surname', '$address', '$city', '$phone', '$gender', '$email', '$password', '$user_group', '$activeuser')") or die($mysqli->error);
+
+	$_SESSION['message'] = "Uspesno ste se registrovali";
+
+	header('location: ../login.php');
+
+	}
 
 }
 
