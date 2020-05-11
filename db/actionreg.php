@@ -55,7 +55,7 @@ if(isset($_POST['register'])) {
 					VALUES ('$name', '$surname', '$address', '$city', '$phone', '$gender', '$email', '$password', '$user_group', '$activeuser')") or die($mysqli->error);
 
 	$_SESSION['message'] = "Uspesno ste se registrovali";
-
+	$_SESSION['msg_type'] = "warning";
 	header('location: ../login.php');
 
 	}

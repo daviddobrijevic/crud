@@ -31,26 +31,56 @@
 			<h4 class="card-title mt-2">Prijava</h4>
 		</div>
 
-	<form class="card-body" action="" method="POST">
+	<form class="card-body" action="db/actionlog.php" method="POST">
 		
 		<div class="form-group">
 			<label>E-mail</label>
-			<input type="email" class="form-control" name="email" placeholder="">
+			<input type="email" class="form-control" name="email" placeholder="E-mail">
 		</div> 
-
+		
 		<div class="form-group">
 			<label>Lozinka</label>
-		    <input type="text" class="form-control" name="password" placeholder="">
+		    <input type="text" class="form-control" name="password" placeholder="Password">
 		</div>
+
+			<?php 
+	          if(isset($_SESSION['messagePolja'])): 
+	        ?>
+	          <p class="redcolor">*
+	        <?php echo $_SESSION['messagePolja'];
+	              unset($_SESSION['messagePolja']);
+	        ?>
+	          </p>
+	   		<?php endif ?>
+	   		
+	   		<?php 
+	          if(isset($_SESSION['messagePL'])): 
+	        ?>
+	          <p class="redcolor">*
+	        <?php echo $_SESSION['messagePL'];
+	              unset($_SESSION['messagePL']);
+	        ?>
+	          </p>
+	   		<?php endif ?>
+
+	   		<?php 
+	          if(isset($_SESSION['messagePP'])): 
+	        ?>
+	          <p class="redcolor">*
+	        <?php echo $_SESSION['messagePP'];
+	              unset($_SESSION['messagePP']);
+	        ?>
+	          </p>
+	   		<?php endif ?>
 
 		<div class="form-group">
-			<button class="btn btn-primary" name="login">Prijavi se</button>
+			<button type="submit" class="btn btn-primary" name="login">Prijavi se</button>
 		</div>
-
-		<div class="form-check">
+	
+  		<!-- <div class="form-check">
 	    	<input type="checkbox" class="form-check-input" id="zapamti" name="zapamti">
 	    	<label class="form-check-label" for="zapamti">Zapamti me</label>
-	  	</div> 
+	  	</div> -->
  
 	</form>
 
