@@ -33,7 +33,7 @@
 		</nav>
 	</header>	
 
-        <?php require_once 'db/process.php'; ?>
+        <?php include 'db/process.php'; ?>
 
 	<?php 
 	if (isset($_SESSION['message'])):

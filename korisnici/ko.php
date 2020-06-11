@@ -76,7 +76,7 @@
 						<th>Grad</th>
 						<th>Broj telefona</th>
 						<th>Pol</th>
-						<th>User_grupa</th>
+						<th>Grupa korisnika</th>
 						<th>Status</th>
 						<th>Akcije</th>
 					</tr>

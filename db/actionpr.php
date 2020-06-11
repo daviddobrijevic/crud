@@ -92,12 +92,12 @@ if(isset($_POST['sacuvaj'])) {
 
 
 
-		$imgFile=$_FILES['image']['name'];
+		$imgFile = $_FILES['image']['name'];
 		$tmp_dir = $_FILES['image']['tmp_name'];
 		$imgSize = $_FILES['image']['size'];
 
 
-		$imagepath="";
+		$imagepath = "";
 
 		if(!empty($imgFile))
 		{

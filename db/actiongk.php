@@ -25,9 +25,9 @@
 
     if($name == '') {
 
-    	$_SESSION['message'] = "Ime ne moze biti prazno";
+    	$_SESSION['message'] = "Naziv ne moze biti prazan";
 
-    	header('location: ../grupeproizvoda/ngk.php');
+    	header('location: ../grupekorisnika/ngk.php');
     } else {
     
     if($result->num_rows) {

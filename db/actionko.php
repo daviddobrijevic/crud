@@ -16,7 +16,7 @@ $phone = '';
 $gender = '';
 $activeuser = "0";
 
-
+$user_groups = $mysqli->query("SELECT * FROM user_groups");
 //insert
 if(isset($_POST['sacuvaj'])) {
 	$name = $_POST['name'];
@@ -36,6 +36,7 @@ if(isset($_POST['sacuvaj'])) {
 		
 	}
 
+	
 	if(isset($_POST['phone'])) {
 		$phone = $_POST['phone'];
 	}
@@ -124,6 +125,7 @@ if(isset($_POST['update'])) {
 	$id = $_POST['id'];
 	$name = $_POST['name'];
 	$surname = $_POST['surname'];
+	$user_group = $_POST['usergroup'];
 
 	if(isset($_POST['email'])) {
 		$email = $_POST['email'];
@@ -146,12 +148,6 @@ if(isset($_POST['update'])) {
 	if(isset($_POST['gender'])) {
 
 		$gender = $_POST['gender'];
-		
-	}
-
-	if(isset($_POST['user_group'])) {
-
-		$user_group = $_POST['user_group'];
 		
 	}
 

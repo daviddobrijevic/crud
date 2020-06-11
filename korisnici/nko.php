@@ -117,6 +117,20 @@
           </div>
 
           <div class="form-row">
+            <div class="col-4">
+              <label>Grupa korisnika</label>
+              <select class="form-control" name="user_group">
+                  <option value="">Izaberite vrednost</option>
+                <?php 
+                while ($row = $user_groups->fetch_assoc()):  //ovde izvrtis da se ispisu u combobox-u
+                ?>
+                <option value="<?php echo $row['id']; ?>"<?php if ($row['id'] == $user_group) echo 'selected="selected"'; ?>><?php echo $row['name'] ?></option>
+                <?php endwhile; ?>
+              </select>
+            </div>
+          </div> 
+
+          <div class="form-row pt-3">
             <div class="col-3 form-group">
               <div class="form-check">
               <input class="form-check-input" type="checkbox" id="activeuser" name="activeuser" value="1" <?php if($id && $activeuser == 1){ echo 'checked';  }   ?>>
@@ -141,6 +155,7 @@
 
 
         <input type="hidden" name="user_group" value="user">
+
     
 
   </div><!--.card-->
